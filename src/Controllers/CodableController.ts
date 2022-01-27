@@ -25,7 +25,6 @@ export class CodableController {
     }
 
     public async decrypt(req: Request) {
-        console
         try {
             const decodableMessage: DecodableMessage = {
                 hash: req.query.hash as string, 

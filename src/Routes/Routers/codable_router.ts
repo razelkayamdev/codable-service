@@ -1,7 +1,7 @@
 import { Router } from "express";
 import { Request, Response } from 'express';
 import { CodableController } from "../../Controllers/CodableController";
-import { Codable, DecodableMessage } from "../../Model/Codable";
+import { Codable } from "../../Model/Codable";
 
 const router = Router();
 const codable = new Codable(undefined);
