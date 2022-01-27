@@ -1,0 +1,16 @@
+node_modules
+dist
+logs
+build
+*.log
+nohup.out
+.env
+.vscode
+log*.txt
+*.log
+.idea/
+*.txt
+*.rtf
+dump.rdb
+.env
+.DS_Store
