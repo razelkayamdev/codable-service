@@ -27,7 +27,7 @@ export class ExpressServer {
 
     private loadRouters() {
         this.app.use(ROUTES_DEFINES.IS_ALIVE_ROUTE, applicationRoutes.get(ROUTES_DEFINES.IS_ALIVE_ROUTE)!);
-        this.app.use(ROUTES_DEFINES.CODEABLE, applicationRoutes.get(ROUTES_DEFINES.CODEABLE)!);
+        this.app.use(ROUTES_DEFINES.CODABLE, applicationRoutes.get(ROUTES_DEFINES.CODABLE)!);
     }
 
     private errorHandler(err: any, req: Request, res: Response, next: any) {
