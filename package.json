@@ -4,7 +4,7 @@
   "description": "a micro service that encodes and decodes messages",
   "main": "Launcher.ts",
   "scripts": {
-    "build" : "rm -rf dist && tsc -p .",
+    "build": "rm -rf dist && tsc -p .",
     "start": "node dist/Launcher.js",
     "start:prod": "npm install && npm run build && npm run start",
     "start:dev": "npm install && ts-node src/Launcher.ts",
@@ -22,6 +22,7 @@
     "typescript": "^4.1.5"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "express": "^4.17.1"
   }
 }

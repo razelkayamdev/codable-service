@@ -4,6 +4,7 @@ import { CodableController } from "../../Controllers/CodableController";
 import { Codable } from "../../Model/Codable";
 
 const router = Router();
+router.use(require("cors")()); // Supporing CORS from browsers.
 const codable = new Codable(undefined);
 
 router.get("/", async (req: Request, res: Response, next) => {
