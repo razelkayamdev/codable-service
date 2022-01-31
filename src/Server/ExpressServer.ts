@@ -1,20 +1,27 @@
 import express from 'express';
 import { Application, Response, Request } from 'express';
 import { Server } from 'http';
+import { Codable } from '../Model/Codable';
 import ROUTES_DEFINES from '../Routes/routes_defines';
-import applicationRoutes from '../Routes/routes_index';
+import * as applicationRoutes from '../Routes/routes_index';
 import { corsHandler, errorHandler, logHandler } from './Handlers';
 
+export type ServerConfig = {
+    port: number;
+    codable: Codable;
+}
 export class ExpressServer {
     
     private app: Application
-    private port: number
     private server: Server | undefined
+    private port: number
+    private codable: Codable
 
-    constructor(port: number) {
+    constructor(config: ServerConfig) {
+        this.port = config.port;
+        this.codable = config.codable;
         this.app = express();
         this.app.use(express.json());
-        this.port = port;
         this.loadHanlers();
         this.loadRouters();
     }
@@ -26,8 +33,12 @@ export class ExpressServer {
     }
 
     private loadRouters() {
-        this.app.use(ROUTES_DEFINES.IS_ALIVE_ROUTE, applicationRoutes.get(ROUTES_DEFINES.IS_ALIVE_ROUTE)!);
-        this.app.use(ROUTES_DEFINES.CODABLE, applicationRoutes.get(ROUTES_DEFINES.CODABLE)!);
+
+        const config: applicationRoutes.RoutesConfig = {codable: this.codable};
+        const routes = applicationRoutes.create(config);
+
+        this.app.use(ROUTES_DEFINES.IS_ALIVE_ROUTE, routes.get(ROUTES_DEFINES.IS_ALIVE_ROUTE)!);
+        this.app.use(ROUTES_DEFINES.CODABLE, routes.get(ROUTES_DEFINES.CODABLE)!);
     }
 
     private loadHanlers() {

@@ -1,11 +1,16 @@
-import { ExpressServer } from "./ExpressServer";
+import { Codable } from "../Model/Codable";
+import { ExpressServer, ServerConfig } from "./ExpressServer";
 
 export class AppServer {
 
     private experssServer: ExpressServer;
 
     constructor(port: number) {
-        this.experssServer = new ExpressServer(port);
+        const serverConfig: ServerConfig = {
+            port: port, 
+            codable: new Codable(undefined)
+        }
+        this.experssServer = new ExpressServer(serverConfig);
     }
 
     public createServer() {

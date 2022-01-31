@@ -13,6 +13,6 @@ export const errorHandler = (err: any, req: Request, res: Response, next: any) =
 }
 
 export const logHandler = (req: Request, res: Response, next: any) => {
-    console.log(`Serving user-agent: ${req.get('user-agent')} @${new Date()}`);
+    console.log(`Serving user-agent: ${req.get('user-agent')} @ ${new Date()}`);
     next();
 }
