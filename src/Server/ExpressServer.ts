@@ -3,7 +3,7 @@ import { Application, Response, Request } from 'express';
 import { Server } from 'http';
 import ROUTES_DEFINES from '../Routes/routes_defines';
 import applicationRoutes from '../Routes/routes_index';
-import { corsHandler, errorHandler, logger } from './Handlers';
+import { corsHandler, errorHandler, logHandler } from './Handlers';
 
 export class ExpressServer {
     
@@ -31,7 +31,7 @@ export class ExpressServer {
     }
 
     private loadHanlers() {
-        this.app.use(logger);
+        this.app.use(logHandler);
         this.app.use(corsHandler);
         this.app.use(errorHandler);
     }
