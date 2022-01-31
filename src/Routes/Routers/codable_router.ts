@@ -4,7 +4,6 @@ import { CodableController } from "../../Controllers/CodableController";
 import { Codable } from "../../Model/Codable";
 
 const router = Router();
-router.use(require("cors")()); // Supporing CORS from browsers.
 const codable = new Codable(undefined);
 
 router.get("/", async (req: Request, res: Response, next) => {
@@ -21,8 +20,6 @@ router.get("/", async (req: Request, res: Response, next) => {
       error: error
     });
   }
-  
-  console.log(`Served user-agent: ${req.get('user-agent')}`);
 });
 
 router.post("/", async (req: Request, res: Response, next) => {
@@ -38,8 +35,6 @@ router.post("/", async (req: Request, res: Response, next) => {
       error: error
     });
   }
-
-  console.log(`Served user-agent: ${req.get('user-agent')}`);
 });
 
 export default router;

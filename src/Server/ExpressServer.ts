@@ -3,6 +3,7 @@ import { Application, Response, Request } from 'express';
 import { Server } from 'http';
 import ROUTES_DEFINES from '../Routes/routes_defines';
 import applicationRoutes from '../Routes/routes_index';
+import { corsHandler, errorHandler, logger } from './Handlers';
 
 export class ExpressServer {
     
@@ -13,9 +14,8 @@ export class ExpressServer {
     constructor(port: number) {
         this.app = express();
         this.app.use(express.json());
-        this.app.use(this.errorHandler);
         this.port = port;
-
+        this.loadHanlers();
         this.loadRouters();
     }
 
@@ -30,9 +30,9 @@ export class ExpressServer {
         this.app.use(ROUTES_DEFINES.CODABLE, applicationRoutes.get(ROUTES_DEFINES.CODABLE)!);
     }
 
-    private errorHandler(err: any, req: Request, res: Response, next: any) {
-        console.error(err.stack);
-        res.status(500).send('Something broke!');
-        next();
+    private loadHanlers() {
+        this.app.use(logger);
+        this.app.use(corsHandler);
+        this.app.use(errorHandler);
     }
 }
